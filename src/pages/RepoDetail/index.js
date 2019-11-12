@@ -11,7 +11,7 @@ class RepoDetail extends Component {
   async componentDidMount() {
     const name = this.props.match.params.name;
     const { data: repo } = await axios.get(
-      `https://api.github.com/repos/leonardom/${name}`
+      `https://api.github.com/repos/sprengzor/${name}`
     );
 
     this.setState({ loading: false, repo });

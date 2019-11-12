@@ -9,7 +9,7 @@ class ListRepo extends Component {
 
   async componentDidMount() {
     const { data: repos } = await axios.get(
-      "https://api.github.com/users/leonardom/repos"
+      "https://api.github.com/users/sprengzor/repos"
     );
 
     this.setState({ repos });

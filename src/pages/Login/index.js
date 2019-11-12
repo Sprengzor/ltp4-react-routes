@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Axios from "axios";
 
 class Login extends Component {
   state = {
@@ -7,23 +8,28 @@ class Login extends Component {
     password: ""
   };
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
 
     const { email, password } = this.state;
 
-    if (email === "admin@unifeob.edu.br" && password === "admin123") {
+    try {
+      const { data } = await Axios.post("http://localhost:3333/sessions", {
+        email,
+        password
+      });
+
       localStorage.setItem(
         "unifeob-app-user",
         JSON.stringify({
-          email
+          data
         })
       );
 
       this.setState({ error: "" });
-
       this.props.history.push("/repos");
-    } else {
+      
+    } catch (err) {
       this.setState({ error: "Invalid credentials" });
     }
   };
